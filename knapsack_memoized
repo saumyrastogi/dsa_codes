@@ -1,7 +1,8 @@
 #include <bits/stdc++.h> 
 using namespace std; 
-int static t[1000][1000];      // take the size of this array according to the constraints and initialize it with -1 using memset in main func.
+int static t[1000][1000];      // take the size of this array according to the constraints and initialize it with -1 using memset in main func.Take it value of constraints plus 1.
                                //Observe the arguement changing the knapsack function and make the the argument row and column in matrix.
+			       // if n=1000 ,w=1000 -> t[1001][1001];
 
 int max(int a, int b) { return (a > b) ? a : b; } 
 
