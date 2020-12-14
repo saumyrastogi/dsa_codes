@@ -1,0 +1,33 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+vector<vector<int>>tree(1000);
+
+void dfs(int start,int parent)
+{
+    cout<<start<<" ";
+    int i;
+    for(i=0;i<tree[start].size();i++)
+    {
+        if(tree[start][i]==parent)
+        continue;
+        dfs(tree[start][i],start);
+    }
+    
+
+}
+int main() {
+	int n,i;
+	cin>>n;
+	
+	for(i=0;i<n-1;i++)
+	{
+	    int x,y;
+	    cin>>x>>y;
+	    tree[x].push_back(y);
+	    tree[y].push_back(x);
+	}
+	// tree is rooted at 1.
+	dfs(1,-1);
+	return 0;
+}
