@@ -4,7 +4,6 @@
 using namespace std;
 
 int t[1001][1001];
-
 int lcs(string &X, string &Y, int m, int n ) 
 { 
     int i,j;
@@ -13,33 +12,26 @@ int lcs(string &X, string &Y, int m, int n )
         for(j=1;j<=n;j++)
         {
             if(X[i-1]==Y[j-1])
-            {
-                t[i][j]=1+t[i-1][j-1];
-            }
-            
+            t[i][j]=1+t[i-1][j-1];
             else
-            {
-                t[i][j]=max(t[i-1][j] , t[i][j-1]);
-            }
+            t[i][j]=max(t[i-1][j] , t[i][j-1]);
         }
     }
     return t[m][n];
 } 
 
 int max(int a, int b) 
-{ 
-	return (a > b)? a : b; 
-} 
+{
+    return (a > b)? a : b; 
+}
 
 int main() 
 { 
 string X,Y;
- 
 cin>>X>>Y;
 int m = X.size(); 
 int n = Y.size(); 
 memset(t,0,sizeof(t));
-
 printf("Length of LCS is %d", lcs( X, Y, m, n ) ); 
 
 return 0; 
