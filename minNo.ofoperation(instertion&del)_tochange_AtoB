@@ -1,0 +1,41 @@
+#include<bits/stdc++.h> 
+#include<string>
+#include <iostream>
+using namespace std;
+                                                                                 //lcs in first string will be same in second string so , del remaining char from first string (len(A)-lcs)
+                                                                                 //then insert the elements in second string other than lcs i.e (len(B)-lcs)
+int t[1001][1001];
+int lcs(string &X, string &Y, int m, int n ) 
+{ 
+    int i,j;
+    for(i=1;i<=m;i++)
+    {
+        for(j=1;j<=n;j++)
+        {
+            if(X[i-1]==Y[j-1])
+            t[i][j]=1+t[i-1][j-1];
+            else
+            t[i][j]=max(t[i-1][j] , t[i][j-1]);
+        }
+    }
+    return t[m][n];
+} 
+
+int max(int a, int b) 
+{
+    return (a > b)? a : b; 
+}
+
+int main() 
+{ 
+string X,Y;
+cin>>X>>Y;
+int m = X.size(); 
+int n = Y.size(); 
+memset(t,0,sizeof(t));
+int lcssize = lcs( X, Y, m, n );
+cout<<"Delete operation : "<<m-lcssize<<endl;
+cout<<"Insert operation : "<<n-lcssize;
+
+return 0; 
+} 
