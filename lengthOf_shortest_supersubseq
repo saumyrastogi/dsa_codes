@@ -1,0 +1,41 @@
+#include<bits/stdc++.h> 
+#include<string>
+#include <iostream>
+using namespace std;                                                                  // Super sequence is a string which contains the given string as a subseq. 
+                                                                                      // We need to find super seq of smallest possible length. 
+                                                                                      // The characters that are common in both the string should be written once in superseq , i.e lcs of the string , 
+                                                                                      // rest the char that are unique in both the strings are added.Hence len(A)+len(B)-lcs(A,B)
+
+int t[1001][1001];
+int lcs(string &X, string &Y, int m, int n ) 
+{ 
+    int i,j;
+    for(i=1;i<=m;i++)
+    {
+        for(j=1;j<=n;j++)
+        {
+            if(X[i-1]==Y[j-1])
+            t[i][j]=1+t[i-1][j-1];
+            else
+            t[i][j]=max(t[i-1][j] , t[i][j-1]);
+        }
+    }
+    return t[m][n];
+} 
+
+int max(int a, int b) 
+{
+    return (a > b)? a : b; 
+}
+
+int main() 
+{ 
+string X,Y;
+cin>>X>>Y;
+int m = X.size(); 
+int n = Y.size(); 
+memset(t,0,sizeof(t));
+cout<<m+n-lcs( X, Y, m, n ); 
+
+return 0; 
+} 
