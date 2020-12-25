@@ -35,7 +35,7 @@ int m = X.size();
 int n = Y.size(); 
 memset(t,0,sizeof(t));
 
-cout<< m - lps( X, Y, m, n ); 
+cout<< m - lps( X, Y, m, n );                                                                       // It also gives min nomber of insertion to make the string palindromic.
 
 return 0; 
 } 
