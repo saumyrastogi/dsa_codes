@@ -1,0 +1,64 @@
+#include <iostream>
+#include<vector>
+#include<bits/stdc++.h>
+#include<string>
+#include<cmath>
+#define ll long long
+#define pb push_back
+#define vc vector
+#define vi vc<long long int>
+#define setbits(x)  __builtin_popcountll(x)
+#define zerobits(x) __builtin_ctzll(x)
+const int mod = 1e9+7;
+const int mod2 = 998244353;
+const long long inf = 1e18;
+const long double PI = 3.141592653589793;
+using namespace std;
+int add(int a,int b,int mod=mod){int res=(a+b)%mod;return (res<0)?res+mod:res;}
+
+int mul(int a,int b,int mod=mod){int res=(a*1LL*b)%mod;return (res<0)?res+mod:res;}
+int main() {
+	int t,p=1;
+	cin>>t;
+	while(t--)
+	{
+        int n,i,j;
+        cin>>n;
+        vector<pair<int,int>> v(n);
+        for(i=0;i<n;i++)
+        {
+            int x,y;
+            cin>>x>>y;
+            v[i].first=x;
+            v[i].second=y;
+        }
+        stack<pair<int,int>> st;
+        st.push({v[0].first,v[0].second});
+        for(i=1;i<n;i++)
+        {
+            int start1=st.top().first,end1=st.top().second;
+            int start2=v[i].first,end2=v[i].second;
+            if(end1>=start2 && end1<=end2)
+            {
+                st.pop();
+                st.push({start1,end2});
+            }
+            else if(end1>=start2 && end1>end2)
+            {
+                st.pop();
+                st.push({start1,end1});
+            }
+            else
+            {
+                st.push({start2,end2});
+            }
+        }
+        while(!st.empty())
+        {
+            cout<<st.top().first<<" "<<st.top().second<<endl;
+            st.pop();
+        }
+	}
+	return 0;
+}
+
