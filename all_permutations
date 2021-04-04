@@ -1,0 +1,26 @@
+void permutation(string ip,int start)
+{
+    int i;
+    ss.insert(ip);
+    for(i=start;i<ip.size();i++)
+    {
+        swap(ip[0],ip[i]);
+        permutation(ip,start+1);
+    }
+    
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+        string str;
+        int start=0;
+        cin>>str;
+        permutation(str,0);
+        for(auto i:ss)
+        cout<<'"'<<i<<'"'<<endl;
+	}
+	return 0;
+}
+
