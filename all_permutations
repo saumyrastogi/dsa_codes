@@ -1,3 +1,4 @@
+set<string>ss;
 void permutation(string ip,int start)
 {
     int i;
