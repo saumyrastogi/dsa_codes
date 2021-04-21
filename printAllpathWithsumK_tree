@@ -1,0 +1,119 @@
+#include<vector>
+#include<bits/stdc++.h>
+#include<string>
+#include<cmath>
+#define ll long long
+#define pb push_back
+#define vc vector
+#define vi vc<long long int>
+#define setbits(x)  __builtin_popcountll(x)
+#define zerobits(x) __builtin_ctzll(x)
+const int mod = 1e9+7;
+const int mod2 = 998244353;
+const long long inf = 1e18;
+const long double PI = 3.141592653589793;
+using namespace std;
+#define NUM_LINE 2
+#define NUM_STATION 4
+int add(int a,int b,int mod=mod){int res=(a+b)%mod;return (res<0)?res+mod:res;}
+
+ll int binarySearch(vector<ll int>arr,ll int l,ll int r,ll int x)
+{
+    if (r >= l) {
+       ll int mid = l + (r - l) / 2;
+  
+        // If the element is present at the middle
+        // itself
+        if (arr[mid] == x)
+            return mid;
+  
+        // If element is smaller than mid, then
+        // it can only be present in left subarray
+        if (arr[mid] > x)
+            return binarySearch(arr, l, mid - 1, x);
+  
+        // Else the element can only be present
+        // in right subarray
+        return binarySearch(arr, mid + 1, r, x);
+    }
+  
+    // We reach here when element is not
+    // present in array
+    return -1;
+}
+unsigned ll int getSum(unsigned ll int n)
+    {
+        unsigned ll int sum = 0;
+        while (n != 0) {
+            sum = sum + n % 10;
+            n = n / 10;
+        }
+        return sum;
+    }
+
+int mul(int a,int b,int mod=mod){int res=(a*1LL*b)%mod;return (res<0)?res+mod:res;}
+struct Node
+{
+    int data;
+    Node *left,*right;
+    Node(int x)
+    {
+        data = x;
+        left = right = NULL;
+    }
+};
+
+vector<int>v;
+
+void printthispath(int i)
+{
+    int k;
+    for(k=i;k<v.size();k++)
+    cout<<v[k]<<" ";
+}
+void printKPath(Node* root,int k)
+{
+    if(root==NULL)
+    return;
+    v.push_back(root->data);
+    
+    if(root->left)
+    printKPath(root->left,k);
+    if(root->right)
+    printKPath(root->right,k);
+    int i,sum=0;
+    for(i=v.size()-1;i>=0;i--)
+    {
+        sum+=v[i];
+        if(sum==k)
+        {
+            printthispath(i);
+            cout<<endl;
+        }
+    }
+    v.pop_back();
+    
+}
+
+int main()
+{
+    Node *root = new Node(1);
+    root->left = new Node(3);
+    root->left->left = new Node(2);
+    root->left->right = new Node(1);
+    root->left->right->left = new Node(1);
+    root->right = new Node(-1);
+    root->right->left = new Node(4);
+    root->right->left->left = new Node(1);
+    root->right->left->right = new Node(2);
+    root->right->right = new Node(5);
+    root->right->right->right = new Node(2);
+  
+    int k = 5;
+    printKPath(root, k);
+  
+    return 0;
+}
+	    
+
+
