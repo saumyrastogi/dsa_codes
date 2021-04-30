@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int hpo2(int n)
+{
+    int i=0;
+    while((1<<i)<=n)
+    i++;
+    if(i>0)
+    return i-1;
+    else
+    return 0;
+}
+int sqno(int n)
+{
+    if(n<0)
+    n=(-1)*n;
+    int prev=n,temp;
+    int ans=0;
+    while(prev>0)
+    {
+        temp=hpo2(prev);
+        ans+=n<<temp;
+        prev-=1<<temp;
+    }
+    return ans;
+}
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    int n;
+	cin>>n;
+	int ans=sqno(n);
+	cout<<ans<<endl;
+	
+    }
+	
+}
