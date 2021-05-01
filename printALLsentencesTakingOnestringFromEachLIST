@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+#include<vector>
+#include<string>
+
+vector<string> strvi;
+void printallsen(vector<vector<string>>vs,int i,int r,int c)
+{
+    int j=0;
+    if(i==r)
+    {
+        int k=0;
+        for(k=0;k<r;k++)
+        cout<< strvi[k] <<" ";
+        cout<<endl;
+        return;
+    }
+    
+    for(j=0;j<c;j++)
+    {
+        strvi.push_back(vs[i][j]);
+        printallsen(vs,i+1,r,c);
+        strvi.pop_back();   
+    }
+}
+
+int main() {
+    
+    int n,m;
+  	cin>>n>>m;
+  	vector<vector<string>>vs = {{"you", "we"},
+        {"have", "are"},
+        {"sleep", "eat"}};
+
+    
+    printallsen(vs,0,m,n);
+    
+    return 0;
+}
